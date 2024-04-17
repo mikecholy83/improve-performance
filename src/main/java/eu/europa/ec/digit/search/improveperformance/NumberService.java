@@ -40,9 +40,26 @@ public class NumberService {
     }
 
     public Integer findSmallestDuplicateImproved(List<Integer> data) {
-        
-        throw new UnsupportedOperationException("Not implemented.");
 
+        boolean[] arrWithDuplicates = new boolean[SAMPLE_SIZE];
+        int smallestDuplicate = -1;
+
+        for (int number:data) {
+            if (!arrWithDuplicates[number]) {
+            	arrWithDuplicates[number] = true;
+            }
+            else {
+                log.info("found duplicate improve{}", number);
+                if (smallestDuplicate < 0) {
+                    smallestDuplicate = number;
+                }
+                else {
+                    smallestDuplicate = Math.min(smallestDuplicate, number);
+                }
+            }
+        }
+
+        return smallestDuplicate < 0 ? null : smallestDuplicate;
     }
 
     public List<Integer> generateData() {
